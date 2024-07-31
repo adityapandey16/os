@@ -1,0 +1,81 @@
+Step 1: Set Up Your Environment
+Download and install Java Development Kit (JDK): Make sure JDK is installed on your machine.
+Download and install Eclipse IDE: Get Eclipse IDE for Java Developers from Eclipse Downloads.
+Set up Selenium WebDriver: Download Selenium WebDriver Java bindings from Selenium HQ.
+Download the appropriate WebDriver: Get the WebDriver for your browser (e.g., ChromeDriver for Google Chrome) from here.
+
+Step 2: Create a New Java Project in Eclipse
+Open Eclipse and create a new Java project:
+File > New > Java Project
+Name your project (e.g., SeleniumDemo).
+
+Step 3: Add Selenium JARs to Your Project
+Right-click on your project in the Project Explorer.
+Build Path > Configure Build Path
+In the Libraries tab, click Add External JARs... and add the Selenium JAR files you downloaded.
+
+Step 4: Write the Selenium Script
+Create a new package:
+
+Right-click on src > New > Package
+Name your package (e.g., com.selenium.demo).
+Create a new Java class:
+
+Right-click on your package > New > Class
+Name your class (e.g., ProductSearch).
+Write the following code in your class:
+
+
+
+package com.selenium.demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ProductSearch {
+
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Initialize the ChromeDriver
+        WebDriver driver = new ChromeDriver();
+
+        try {
+            // Open the Magento demo site
+            driver.get("https://magento.softwaretestingboard.com/");
+
+            // Find the search box element and search for "shirt"
+            WebElement searchBox = driver.findElement(By.id("search"));
+            searchBox.sendKeys("shirt");
+
+            // Click the search button
+            WebElement searchButton = driver.findElement(By.xpath("//button[@title='Search']"));
+            searchButton.click();
+
+            // Wait for the results page to load and get the title
+            Thread.sleep(3000); // Wait for 3 seconds
+
+            // Verify the title of the page
+            String expectedTitle = "Search results for: 'shirt'";
+            String actualTitle = driver.getTitle();
+
+            if (actualTitle.contains(expectedTitle)) {
+                System.out.println("Test Passed: Title contains '" + expectedTitle + "'");
+            } else {
+                System.out.println("Test Failed: Title does not contain '" + expectedTitle + "'");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the browser
+            driver.quit();
+        }
+    }
+}
+
+Step 5: Run Your Script
+Right-click on your Java class in the Project Explorer.
+Select Run As > Java Application.
