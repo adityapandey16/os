@@ -1,0 +1,24 @@
+#Find the number of logged in users 
+
+who | wc -l
+
+#Write the first 5 lines of "dmesg" command to the file "log.txt"
+
+dmesg | head -n 5 > log.txt
+
+
+#Create file "my.txt" and change its permission so that only the user is allowed to read and write
+
+touch my.txt
+chmod 600 my.txt
+
+
+#Create a new user "CDAC"
+sudo adduser CDAC
+
+
+#Create a new user "CDAC1" and add this user to the "CDAC" group
+
+sudo adduser CDAC1
+sudo usermod -aG CDAC CDAC1
+
