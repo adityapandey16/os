@@ -1,0 +1,43 @@
+Step 1: Build the Docker ImageFirst, 
+build the Docker image from your Dockerfile.
+
+docker build -t your-username/your-image-name:tag .
+
+
+Replace your-username with your Docker Hub username, 
+your-image-name with the desired name of your image, 
+and tag with the version tag you want to use (e.g., latest).
+
+
+Step 2: Log in to Docker HubLog in to your Docker Hub account using the docker login command.
+
+docker login
+
+
+You will be prompted to enter your Docker Hub username and password.
+
+
+Step 3: Tag the Image (Optional)If you didn't tag the image during the build step,
+you can tag it now. This step is only necessary if you want to change the tag.
+
+
+docker tag image-id your-username/your-image-name:tag
+
+
+
+Replace image-id with the ID of your image (you can find this by running docker images), your-username with your Docker Hub username, your-image-name with the desired name of your image, and tag with the version tag you want to use (e.g., latest).
+
+Step 4: Push the Image to Docker HubPush the image to Docker Hub using the docker push command.
+
+
+docker push your-username/your-image-name:tag
+
+
+Replace your-username with your Docker Hub username, your-image-name with the name of your image, and tag with the version tag you used.
+
+--------------------------------------------------------------------------------------
+
+docker build -t myusername/myapp:latest
+
+
+docker push myusername/myapp:latest
